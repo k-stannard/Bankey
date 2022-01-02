@@ -13,6 +13,7 @@
 		459AB9BD2780BE72007B468F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459AB9BB2780BE72007B468F /* LaunchScreen.storyboard */; };
 		459AB9C72780C4B3007B468F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459AB9C62780C4B3007B468F /* LoginView.swift */; };
 		459AB9CA27811899007B468F /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459AB9C927811899007B468F /* ContainerController.swift */; };
+		459AB9CC278121AF007B468F /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459AB9CB278121AF007B468F /* OnboardingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		459AB9BE2780BE72007B468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		459AB9C62780C4B3007B468F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		459AB9C927811899007B468F /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		459AB9CB278121AF007B468F /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				459AB9C927811899007B468F /* ContainerController.swift */,
+				459AB9CB278121AF007B468F /* OnboardingController.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				459AB9C72780C4B3007B468F /* LoginView.swift in Sources */,
 				459AB9B52780BE6B007B468F /* LoginController.swift in Sources */,
 				459AB9B12780BE6A007B468F /* AppDelegate.swift in Sources */,
+				459AB9CC278121AF007B468F /* OnboardingController.swift in Sources */,
 				459AB9CA27811899007B468F /* ContainerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
