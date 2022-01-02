@@ -7,14 +7,19 @@
 
 import UIKit
 
+protocol ContainerControllerDelegate: AnyObject {
+    func didFinishOnboarding()
+}
+
 class ContainerController: UIViewController {
 
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
-    var currentVC: UIViewController {
-        didSet {
-        }
-    }
+    var currentVC: UIViewController
+    let closeButton = UIButton(type: .system)
+    let doneButton = UIButton(type: .system)
+    
+    weak var delegate: ContainerControllerDelegate?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -39,6 +44,12 @@ class ContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+        style()
+        layout()
+    }
+    
+    fileprivate func setup() {
         view.backgroundColor = .systemPurple
         
         addChild(pageViewController)
@@ -57,6 +68,40 @@ class ContainerController: UIViewController {
         
         pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false, completion: nil)
         currentVC = pages.first!
+    }
+    
+    fileprivate func style() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setTitle("Close", for: .normal)
+        closeButton.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
+        
+        view.addSubview(closeButton)
+        view.addSubview(doneButton)
+    }
+    
+    fileprivate func layout() {
+        NSLayoutConstraint.activate([
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
+            
+            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35)
+        ])
+    }
+}
+
+//MARK: - Actions
+extension ContainerController {
+    @objc fileprivate func handleClose(_ sender: UIButton) {
+        delegate?.didFinishOnboarding()
+    }
+    
+    @objc fileprivate func handleDone(_ sender: UIButton) {
+        delegate?.didFinishOnboarding()
     }
 }
 
