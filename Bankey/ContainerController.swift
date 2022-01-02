@@ -16,8 +16,11 @@ class ContainerController: UIViewController {
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
     var currentVC: UIViewController
+    
     let closeButton = UIButton(type: .system)
     let doneButton = UIButton(type: .system)
+    let backButton = UIButton(type: .system)
+    let nextButton = UIButton(type: .system)
     
     weak var delegate: ContainerControllerDelegate?
     
@@ -79,29 +82,56 @@ class ContainerController: UIViewController {
         doneButton.setTitle("Done", for: .normal)
         doneButton.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         
-        view.addSubview(closeButton)
-        view.addSubview(doneButton)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setTitle("Next", for: .normal)
+        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.setTitle("Back", for: .normal)
+        backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
     }
     
     fileprivate func layout() {
+        view.addSubview(closeButton)
+        view.addSubview(doneButton)
+        view.addSubview(backButton)
+        view.addSubview(nextButton)
+        
         NSLayoutConstraint.activate([
             closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
             
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35)
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35),
+            
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: nextButton.trailingAnchor, multiplier: 2),
+            view.bottomAnchor.constraint(equalToSystemSpacingBelow: nextButton.bottomAnchor, multiplier: 4),
+            
+            backButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.bottomAnchor.constraint(equalToSystemSpacingBelow: backButton.bottomAnchor, multiplier: 4)
         ])
     }
 }
 
 //MARK: - Actions
 extension ContainerController {
+    
     @objc fileprivate func handleClose(_ sender: UIButton) {
         delegate?.didFinishOnboarding()
     }
     
     @objc fileprivate func handleDone(_ sender: UIButton) {
         delegate?.didFinishOnboarding()
+    }
+    
+    @objc fileprivate func handleNext(_ sender: UIButton) {
+        guard let nextVC = getNextViewController(from: currentVC) else { return }
+        pageViewController.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil)
+    }
+    
+    @objc fileprivate func handleBack(_ sender: UIButton) {
+        guard let previousVC = getPreviousViewController(from: currentVC) else { return }
+        pageViewController.setViewControllers([previousVC], direction: .reverse, animated: true, completion: nil)
     }
 }
 
