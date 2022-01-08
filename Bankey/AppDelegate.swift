@@ -49,16 +49,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: LoginControllerDelegate, ContainerControllerDelegate, LogoutDelegate {
+extension AppDelegate: LoginControllerDelegate {
+    
     func didLogin() {
         displayNextScreen()
     }
+}
+
+extension AppDelegate: ContainerControllerDelegate {
     
     func didFinishOnboarding() {
         LocalState.hasOnboarded = true
         prepareMainView()
         setRootViewController(mainViewController)
     }
+}
+
+extension AppDelegate: LogoutDelegate {
     
     func didLogout() {
         setRootViewController(loginController)
@@ -66,6 +73,7 @@ extension AppDelegate: LoginControllerDelegate, ContainerControllerDelegate, Log
 }
 
 extension AppDelegate {
+    
     func setRootViewController(_ viewController: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = viewController
