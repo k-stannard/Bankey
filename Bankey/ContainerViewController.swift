@@ -1,5 +1,5 @@
 //
-//  ContainerController.swift
+//  ContainerViewController.swift
 //  Bankey
 //
 //  Created by Koty Stannard on 1/1/22.
@@ -11,7 +11,7 @@ protocol ContainerControllerDelegate: AnyObject {
     func didFinishOnboarding()
 }
 
-class ContainerController: UIViewController {
+class ContainerViewController: UIViewController {
 
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
@@ -27,9 +27,9 @@ class ContainerController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let page1 = OnboardingController(imageName: "delorean", titleText: "Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989.")
-        let page2 = OnboardingController(imageName: "world", titleText: "Move your money around the world quickly and securely.")
-        let page3 = OnboardingController(imageName: "thumbs", titleText: "Learn more at www.bankey.com.")
+        let page1 = OnboardingViewController(imageName: "delorean", titleText: "Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989.")
+        let page2 = OnboardingViewController(imageName: "world", titleText: "Move your money around the world quickly and securely.")
+        let page3 = OnboardingViewController(imageName: "thumbs", titleText: "Learn more at www.bankey.com.")
         
         pages.append(page1)
         pages.append(page2)
@@ -114,7 +114,7 @@ class ContainerController: UIViewController {
 }
 
 //MARK: - Actions
-extension ContainerController {
+extension ContainerViewController {
     
     @objc fileprivate func handleClose(_ sender: UIButton) {
         delegate?.didFinishOnboarding()
@@ -136,7 +136,7 @@ extension ContainerController {
 }
 
 // MARK: - UIPageViewControllerDataSource
-extension ContainerController: UIPageViewControllerDataSource {
+extension ContainerViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return getPreviousViewController(from: viewController)

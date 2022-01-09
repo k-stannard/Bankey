@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  Bankey
 //
 //  Created by Koty Stannard on 1/1/22.
@@ -15,7 +15,7 @@ protocol LogoutDelegate: AnyObject {
     func didLogout()
 }
 
-class LoginController: UIViewController {
+class LoginViewController: UIViewController {
 
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
@@ -45,7 +45,7 @@ class LoginController: UIViewController {
 }
 
 //MARK: - Controller Style & Layout
-extension LoginController {
+extension LoginViewController {
     
     fileprivate func style() {
         loginView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ extension LoginController {
 }
 
 //MARK: - Action Setup
-extension LoginController {
+extension LoginViewController {
     
     @objc fileprivate func handleSignIn() {
         errorLabel.isHidden = true

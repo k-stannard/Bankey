@@ -13,8 +13,8 @@ let appColor: UIColor = .systemTeal
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let loginController = LoginController()
-    let onboardingContainerController = ContainerController()
+    let loginController = LoginViewController()
+    let onboardingContainerController = ContainerViewController()
     let mainViewController = MainViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {

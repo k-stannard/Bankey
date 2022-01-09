@@ -1,5 +1,5 @@
 //
-//  OnboardingController.swift
+//  OnboardingViewController.swift
 //  Bankey
 //
 //  Created by Koty Stannard on 1/1/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingController: UIViewController {
+class OnboardingViewController: UIViewController {
     
     let stackView = UIStackView()
     let imageView = UIImageView()
@@ -35,7 +35,7 @@ class OnboardingController: UIViewController {
     }
 }
 
-extension OnboardingController {
+extension OnboardingViewController {
     func style() {
         view.backgroundColor = .systemBackground
         

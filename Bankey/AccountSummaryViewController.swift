@@ -1,5 +1,5 @@
 //
-//  AccountSummaryController.swift
+//  AccountSummaryViewController.swift
 //  Bankey
 //
 //  Created by Koty Stannard on 1/3/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountSummaryController: UIViewController {
+class AccountSummaryViewController: UIViewController {
     
     var accounts = [AccountSummaryCell.ViewModel]()
     var tableView = UITableView()
@@ -29,7 +29,7 @@ class AccountSummaryController: UIViewController {
     }
 }
 
-extension AccountSummaryController {
+extension AccountSummaryViewController {
     private func setup() {
         setupTableView()
         setupTableHeaderView()
@@ -68,7 +68,7 @@ extension AccountSummaryController {
     }
 }
 
-extension AccountSummaryController: UITableViewDataSource {
+extension AccountSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard !accounts.isEmpty else { return UITableViewCell() }
     
@@ -84,13 +84,13 @@ extension AccountSummaryController: UITableViewDataSource {
     }
 }
 
-extension AccountSummaryController: UITableViewDelegate {
+extension AccountSummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
 }
 
-extension AccountSummaryController {
+extension AccountSummaryViewController {
     private func fetchData() {
         let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
                                                             accountName: "Basic Savings",
@@ -121,7 +121,7 @@ extension AccountSummaryController {
 }
 
 //MARK: - Actions
-extension AccountSummaryController {
+extension AccountSummaryViewController {
     @objc func handleLogout(sender: UIButton) {
         NotificationCenter.default.post(name: .logout, object: nil)
     }
