@@ -17,6 +17,7 @@ protocol LogoutDelegate: AnyObject {
 
 class LoginViewController: UIViewController {
 
+    //MARK: - UI
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorLabel = UILabel()
@@ -33,12 +34,14 @@ class LoginViewController: UIViewController {
         return loginView.passwordTextField.text
     }
     
+    //MARK: - Animation Variables
     var leadingEdgeOnScreen: CGFloat = 16
     var leadingEdgeOffScreen: CGFloat = -1000
     
     var titleLeadingAnchor: NSLayoutConstraint?
     var subtitleLeadingAnchor: NSLayoutConstraint?
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -156,6 +159,7 @@ extension LoginViewController {
     fileprivate func configureView(withMessage message: String) {
         errorLabel.isHidden = false
         errorLabel.text = message
+        shakeErrorLabel()
     }
 }
 
@@ -187,5 +191,16 @@ extension LoginViewController {
             self.view.layoutIfNeeded()
         }
         subtitleAlphaAnimator.startAnimation(afterDelay: 0.75)
+    }
+    
+    private func shakeErrorLabel() {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, 0]
+        animation.keyTimes = [0, 0.16, 0.5, 0.83, 1]
+        animation.duration = 0.4
+        
+        animation.isAdditive = true
+        errorLabel.layer.add(animation, forKey: "shake")
     }
 }
