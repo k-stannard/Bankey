@@ -31,6 +31,8 @@
 		459AB9FF278B9EFB007B468F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459AB9FE278B9EFB007B468F /* UIView+Utils.swift */; };
 		459ABA01278D1E18007B468F /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA00278D1E18007B468F /* Date+Utils.swift */; };
 		459ABA03278D1F2D007B468F /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA02278D1F2D007B468F /* AccountSummaryViewController+Networking.swift */; };
+		459ABA07278D2847007B468F /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA06278D2847007B468F /* ProfileTests.swift */; };
+		459ABA09278D28DA007B468F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA08278D28DA007B468F /* AccountTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		459AB9FE278B9EFB007B468F /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		459ABA00278D1E18007B468F /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		459ABA02278D1F2D007B468F /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
+		459ABA06278D2847007B468F /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
+		459ABA08278D28DA007B468F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +203,8 @@
 		459AB9EA2787E11C007B468F /* BankeyUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				459AB9F22787E2EA007B468F /* CurrencyFormatterTests.swift */,
+				459ABA05278D2829007B468F /* AccountSummary */,
+				459ABA04278D281B007B468F /* Utils */,
 			);
 			path = BankeyUnitTests;
 			sourceTree = "<group>";
@@ -210,6 +215,23 @@
 				459AB9FC278B95B3007B468F /* ShakeyBellView.swift */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		459ABA04278D281B007B468F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				459AB9F22787E2EA007B468F /* CurrencyFormatterTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		459ABA05278D2829007B468F /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				459ABA06278D2847007B468F /* ProfileTests.swift */,
+				459ABA08278D28DA007B468F /* AccountTests.swift */,
+			);
+			path = AccountSummary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				459ABA09278D28DA007B468F /* AccountTests.swift in Sources */,
 				459AB9F32787E2EA007B468F /* CurrencyFormatterTests.swift in Sources */,
+				459ABA07278D2847007B468F /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
