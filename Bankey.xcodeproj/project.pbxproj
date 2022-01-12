@@ -33,6 +33,8 @@
 		459ABA03278D1F2D007B468F /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA02278D1F2D007B468F /* AccountSummaryViewController+Networking.swift */; };
 		459ABA07278D2847007B468F /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA06278D2847007B468F /* ProfileTests.swift */; };
 		459ABA09278D28DA007B468F /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA08278D28DA007B468F /* AccountTests.swift */; };
+		459ABA0B278E7FDA007B468F /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA0A278E7FDA007B468F /* SkeletonLoadable.swift */; };
+		459ABA0D278E8174007B468F /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459ABA0C278E8174007B468F /* SkeletonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		459ABA02278D1F2D007B468F /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
 		459ABA06278D2847007B468F /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		459ABA08278D28DA007B468F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		459ABA0A278E7FDA007B468F /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
+		459ABA0C278E8174007B468F /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				459AB9DF278685EE007B468F /* AccountSummaryCell.swift */,
+				459ABA0A278E7FDA007B468F /* SkeletonLoadable.swift */,
+				459ABA0C278E8174007B468F /* SkeletonCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -350,7 +356,9 @@
 				459AB9FD278B95B3007B468F /* ShakeyBellView.swift in Sources */,
 				459AB9E0278685EE007B468F /* AccountSummaryCell.swift in Sources */,
 				459AB9B12780BE6A007B468F /* AppDelegate.swift in Sources */,
+				459ABA0B278E7FDA007B468F /* SkeletonLoadable.swift in Sources */,
 				459AB9D82783E208007B468F /* AccountSummaryViewController.swift in Sources */,
+				459ABA0D278E8174007B468F /* SkeletonCell.swift in Sources */,
 				459AB9D527826F32007B468F /* MainViewController.swift in Sources */,
 				459AB9CC278121AF007B468F /* OnboardingViewController.swift in Sources */,
 				459AB9FF278B9EFB007B468F /* UIView+Utils.swift in Sources */,
