@@ -151,18 +151,18 @@ extension AccountSummaryViewController {
             case .success(let profile):
                 self.profile = profile
             case .failure(let error):
-                print(error.localizedDescription)
+                showErrorAlert(title: error.title, message: error.message)
             }
             group.leave()
         }
         
         group.enter()
-        fetchAccounts(forUserId: userID) { result in
+        fetchAccounts(forUserId: userID) { [unowned self] result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
             case .failure(let error):
-                print(error.localizedDescription)
+                showErrorAlert(title: error.title, message: error.message)
             }
             group.leave()
         }
@@ -187,5 +187,13 @@ extension AccountSummaryViewController {
         accountCellViewModels = accounts.map {
             AccountSummaryCell.ViewModel(accountType: $0.type, accountName: $0.name, balance: $0.amount)
         }
+    }
+
+    private func showErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
