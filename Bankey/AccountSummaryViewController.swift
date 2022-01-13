@@ -22,6 +22,16 @@ class AccountSummaryViewController: UIViewController {
     var headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControl = UIRefreshControl()
     
+    // Networking
+    var profileManager: ProfileManageable = ProfileManager()
+    
+    // Error alert
+    lazy var errorAlert: UIAlertController = {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
+    
     var isLoaded = false
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
@@ -143,10 +153,21 @@ extension AccountSummaryViewController {
 extension AccountSummaryViewController {
     private func fetchData() {
         let group = DispatchGroup()
-        let userID = String(Int.random(in: 1..<4))
         
+        // Testing - random number selection
+        let userId = String(Int.random(in: 1..<4))
+        
+        fetchProfile(group: group, userId: userId)
+        fetchAccounts(group: group, userId: userId)
+        
+        group.notify(queue: .main) {
+            self.reloadView()
+        }
+    }
+    
+    private func fetchProfile(group: DispatchGroup, userId: String) {
         group.enter()
-        fetchProfile(forUserId: userID) { [unowned self] result in
+        profileManager.fetchProfile(forUserId: userId) { [unowned self] result in
             switch result {
             case .success(let profile):
                 self.profile = profile
@@ -155,9 +176,11 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
+    }
+    
+    private func fetchAccounts(group: DispatchGroup, userId: String) {
         group.enter()
-        fetchAccounts(forUserId: userID) { [unowned self] result in
+        fetchAccounts(forUserId: userId) { [unowned self] result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
@@ -166,16 +189,17 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
+    }
+    
+    private func reloadView() {
+        self.tableView.refreshControl?.endRefreshing()
         
-        group.notify(queue: .main) {
-            self.tableView.refreshControl?.endRefreshing()
-            guard let profile = self.profile else { return }
-            
-            self.isLoaded = true
-            self.configureTableHeaderView(with: profile)
-            self.configureTableCells(with: self.accounts)
-            self.tableView.reloadData()
-        }
+        guard let profile = self.profile else { return }
+        
+        self.isLoaded = true
+        self.configureTableHeaderView(with: profile)
+        self.configureTableCells(with: self.accounts)
+        self.tableView.reloadData()
     }
     
     private func configureTableHeaderView(with profile: Profile) {
@@ -190,10 +214,19 @@ extension AccountSummaryViewController {
     }
 
     private func showErrorAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        errorAlert.title = title
+        errorAlert.message = message
+        present(errorAlert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Unit Testing
+extension AccountSummaryViewController {
+    func errorMessageTesting(for error: NetworkError) -> (String, String) {
+        return (error.title, error.message)
+    }
+    
+    func forceFetchProfile() {
+        fetchProfile(group: DispatchGroup(), userId: "1")
     }
 }
